@@ -1,8 +1,10 @@
-import Amplify, { Auth } from 'aws-amplify';
+import {Amplify} from 'aws-amplify';
+import { signIn, signOut, signUp } from 'aws-amplify/auth';
 import React, { createContext, useContext, useEffect, useState } from "react";
 import AwsConfigAuth from '../aws-config/auth';
 
 Amplify.configure( { Auth: AwsConfigAuth });
+
 
 interface UseAuth {
     isLoading: boolean;
@@ -50,7 +52,7 @@ const useProvideAuth = (): UseAuth => {
 
     const signUp = async (username: string, password: string) => {
         try {
-            await Auth.signUp({ username, password });
+            await signUp({ username, password });
             setUsername(username);
             setPassword(password);
             return { success: true, message: ''};
@@ -78,7 +80,7 @@ const useProvideAuth = (): UseAuth => {
 
     const signIn = async (username: string, password: string) => {
         try {
-            const result = await Auth.signIn(username, password);
+            const result = await signIn(username, password);
             setUsername(result.username);
             setIsAuthenticated(true);
             return { success: true, message: ''};
@@ -92,7 +94,7 @@ const useProvideAuth = (): UseAuth => {
 
     const signOut = async () => {
         try{
-            await Auth.signOut();
+            await signOut();
             setUsername('');
             setIsAuthenticated(false);
             return {success: true, message: ''};

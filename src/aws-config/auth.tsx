@@ -1,7 +1,7 @@
-const Auth = {
+const appConfig = {
     region: process.env.REACT_APP_AUTH_REGION,
     userPoolId: process.env.REACT_APP_AUTH_USER_POOL_ID,
-    userPoolWebClientId: process.env.REACT_APP_AUTH_USER_POOL_WEB_CLIENT_ID,
+    userPoolClientId: process.env.REACT_APP_AUTH_USER_POOL_WEB_CLIENT_ID,
     cookieStorage: {
         domain: process.env.REACT_AUTH_COOKIE_STORAGE_DOMAIN,
         path: '/',
@@ -10,6 +10,6 @@ const Auth = {
         secure: true,
     },
     authenticationFlowType: 'USER_SRP_AUTH',
-}
+};
 
-export default Auth;
+export default appConfig;
